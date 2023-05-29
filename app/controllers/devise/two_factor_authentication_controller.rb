@@ -42,6 +42,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   end
 
   def set_remember_two_factor_cookie(resource)
+    return unless params[:remember_device].to_i == 1
+
     expires_seconds = resource.class.remember_otp_session_for_seconds
 
     if expires_seconds && expires_seconds > 0
